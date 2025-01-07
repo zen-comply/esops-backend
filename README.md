@@ -13,6 +13,7 @@ A wrapper repository that includes ready-to-use Docker and testing frameworks fo
 4. **Prettier** - Code formatter
 5. **Winston** - For logging
 6. **dotenv** - Environment variable management
+7. **Docker** - For containerization
 
 
 ## Steps to Setup Locally
@@ -61,6 +62,26 @@ If you get prettier errors, you can fix them manually or by running this:
 
 ```
 npx prettier --write .
+```
+
+## Run with docker
+
+### 1. Build the Docker Image:
+
+```sh
+docker compose build
+```
+
+### 2. Run the docker container:
+
+```sh
+docker compose up
+```
+
+### 3. Stop the docker container
+
+```sh
+docker compose down
 ```
 
 ## Contributing
