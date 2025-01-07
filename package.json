@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "mocha  --file ./src/__tests__/setup.js ./src/__tests__/apis/*"
+    "test": "mocha  --file ./src/__tests__/setup.js"
   },
   "repository": {
     "type": "git",

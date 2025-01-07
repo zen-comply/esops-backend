@@ -23,8 +23,9 @@ docker-compose up --build
 ```
 
 # Steps to test
-All tests should be stored under '__tests__' folder and should be suffixed with "*.test.js"
-A setup.js file is included in the tests folder for doing setup and tear down.
+- All tests should be stored under '__tests__' folder and should be suffixed with "*.test.js"
+- A setup.js file is included in the tests folder for doing setup and tear down.
+- Mocha configs are under `.mocharc.json`
 
 ```
 npm test
