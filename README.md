@@ -12,6 +12,8 @@ A wrapper repository that includes ready-to-use Docker and testing frameworks fo
 3. **ESLint** - Linting utility for JavaScript
 4. **Prettier** - Code formatter
 5. **Winston** - For logging
+6. **dotenv** - Environment variable management
+
 
 ## Steps to Setup Locally
 
@@ -23,7 +25,16 @@ A wrapper repository that includes ready-to-use Docker and testing frameworks fo
     npm install
     ```
 
-2. **Run the Docker Container:**
+2. **Setup Environment Variables:**
+
+    Create a [.env](http://_vscodecontentref_/2) file in the root directory and add your environment variables. Example:
+
+    ```env
+    PORT=3000
+    NODE_ENV=development
+    ```
+
+3. **Run the Docker Container:**
 
     ```sh
     docker-compose up --build
@@ -51,3 +62,9 @@ If you get prettier errors, you can fix them manually or by running this:
 ```
 npx prettier --write .
 ```
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License.

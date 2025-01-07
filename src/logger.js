@@ -9,7 +9,7 @@ const logFormat = printf(({ level, message, timestamp }) => {
 
 // Create the Winston logger
 const logger = winston.createLogger({
-    level: 'info', // Minimum level to log
+    level: process.env.LOG_LEVEL || 'info',
     format: combine(
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
         colorize(), // Add colors to log levels
