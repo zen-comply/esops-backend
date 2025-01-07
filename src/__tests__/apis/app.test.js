@@ -6,5 +6,5 @@ describe('Express app tests', async () => {
         const response = await request(global.testServer).get('/');
         expect(response.status).to.equal(200);
         expect(response.body.message).to.equal('Hello, World!');
-    })
-})
+    });
+});

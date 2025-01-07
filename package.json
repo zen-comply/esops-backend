@@ -1,31 +1,39 @@
 {
-  "name": "express-wrapper",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "A wrapper reposiroty that includes ready to use docker and testing frameworks",
-  "main": "server.js",
-  "scripts": {
-    "start": "node src/server.js",
-    "test": "mocha  --file ./src/__tests__/setup.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mayurvir/express-wrapper.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mayurvir/express-wrapper/issues"
-  },
-  "homepage": "https://github.com/mayurvir/express-wrapper#readme",
-  "dependencies": {
-    "express": "^4.21.2"
-  },
-  "devDependencies": {
-    "chai": "^5.1.2",
-    "chai-http": "^5.1.1",
-    "mocha": "^11.0.1",
-    "supertest": "^7.0.0"
-  }
+    "name": "express-wrapper",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "A wrapper reposiroty that includes ready to use docker and testing frameworks",
+    "main": "server.js",
+    "scripts": {
+        "start": "node src/server.js",
+        "test": "mocha  --file ./src/__tests__/setup.js",
+        "lint": "eslint ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mayurvir/express-wrapper.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mayurvir/express-wrapper/issues"
+    },
+    "homepage": "https://github.com/mayurvir/express-wrapper#readme",
+    "dependencies": {
+        "express": "^4.21.2",
+        "winston": "^3.17.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.17.0",
+        "chai": "^5.1.2",
+        "chai-http": "^5.1.1",
+        "eslint": "^9.17.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "globals": "^15.14.0",
+        "mocha": "^11.0.1",
+        "prettier": "^3.4.2",
+        "supertest": "^7.0.0"
+    }
 }
