@@ -1,13 +1,13 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  app:
-    build:
-      context: .
-    ports:
-      - "${PORT}:${PORT}"
-    environment:
-      NODE_ENV: ${NODE_ENV}
-      LOG_LEVEL: ${LOG_LEVEL}
-    env_file:
-      - .env
+    app:
+        build:
+            context: .
+        ports:
+            - '${PORT}:${PORT}'
+        environment:
+            NODE_ENV: ${NODE_ENV}
+            LOG_LEVEL: ${LOG_LEVEL}
+        env_file:
+            - .env
