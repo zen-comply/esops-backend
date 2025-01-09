@@ -15,7 +15,6 @@ A wrapper repository that includes ready-to-use Docker and testing frameworks fo
 6. **dotenv** - Environment variable management
 7. **Docker** - For containerization
 
-
 ## Steps to Setup Locally
 
 1. **Clone the Repository and Install Packages:**
@@ -54,6 +53,7 @@ npm test
 ```
 
 ### Run lint checks
+
 ```
 npm run lint
 ```
@@ -84,8 +84,23 @@ docker compose up
 docker compose down
 ```
 
+## Maintenance
+
+Thsi repo is forked from the original repo here:
+https://github.com/mayurvir/express-wrapper
+
+For regular updates and syncing changes from the main repo, use the following command:
+
+```
+git fetch fork
+git merge fork/master
+
+```
+
 ## Contributing
+
 Contributions are welcome! Please open an issue or submit a pull request.
 
 ## License
+
 This project is licensed under the MIT License.
