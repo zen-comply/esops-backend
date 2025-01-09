@@ -84,19 +84,6 @@ docker compose up
 docker compose down
 ```
 
-## Maintenance
-
-Thsi repo is forked from the original repo here:
-https://github.com/mayurvir/express-wrapper
-
-For regular updates and syncing changes from the main repo, use the following command:
-
-```
-git fetch fork
-git merge fork/master
-
-```
-
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.
