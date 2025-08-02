@@ -84,6 +84,16 @@ docker compose up
 docker compose down
 ```
 
+## Swagger docs
+
+#### 1. To generate API documentation using swagger, use the following command:
+
+```
+npm run swagger:generate
+```
+
+Swagger docs will be accesible at : http://{HOST}:{PORT}/api-docs
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request.

@@ -1,0 +1,32 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API documentation",
+        "description": "APIs for exprees app",
+        "version": "1.0.0"
+    },
+    "host": "127.0.0.1:4000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
