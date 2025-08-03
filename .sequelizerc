@@ -1,0 +1,10 @@
+const path = require('path');
+
+module.exports = {
+    config: path.resolve('node_modules/@ensoai/esop-models/src/config/config.js'),
+    'models-path': path.resolve('node_modules/@ensoai/esop-models/src/models'),
+    'migrations-path': path.resolve('node_modules/@ensoai/esop-models/src/migrations'),
+    'seeders-path': path.resolve(
+        'node_modules/@ensoai/esop-models/src/seeders'
+    ),
+};

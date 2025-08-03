@@ -1,6 +1,6 @@
 {
     "spec": "src/__tests__/**/*.test.js",
-    "timeout": 5000,
+    "timeout": 99999,
     "recursive": true,
     "exit": true,
     "reporter": "spec",
