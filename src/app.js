@@ -6,6 +6,8 @@ import { readFileSync } from 'fs';
 import logger from './logger.js';
 dotenv.config(); // Load environment variables from .env
 
+import authRoutes from './routes/auth.route.js';
+
 const app = express();
 
 app.use(express.json());
@@ -34,5 +36,7 @@ try {
 app.get('/', (req, res) => {
     res.json({ message: 'Hello, World!' });
 });
+
+app.use('/auth', authRoutes);
 
 export default app; // Export for testing
