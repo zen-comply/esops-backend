@@ -6,9 +6,14 @@
     "main": "server.js",
     "scripts": {
         "swagger:generate": "node ./swagger/autogen.js",
-        "start": "npm run swagger:generate && node src/server.js",
-        "test": "mocha  --file ./src/__tests__/setup.js",
-        "lint": "eslint ."
+        "migrate": "npx sequelize-cli db:migrate",
+        "seed": "",
+        "start": "nodemon src/server.js",
+        "dev": "TZ=UTC npm run migrate && npm run seed && npm run swagger:generate && npm run start",
+        "test": "TZ=UTC NODE_ENV=test mocha  --file ./src/__tests__/setup.js",
+        "lint": "eslint .",
+        "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+        "db:reset:test": "NODE_ENV=test npm run db:reset"
     },
     "repository": {
         "type": "git",
@@ -22,9 +27,10 @@
     },
     "homepage": "https://github.com/mayurvir/express-wrapper#readme",
     "dependencies": {
-        "@ensoai/esop-models": "^0.0.1",
+        "@ensoai/esop-models": "^0.0.2",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
+        "jsonwebtoken": "^9.0.2",
         "swagger-autogen": "^2.23.7",
         "swagger-ui-express": "^5.0.1",
         "winston": "^3.17.0"
