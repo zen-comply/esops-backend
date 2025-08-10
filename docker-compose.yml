@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-    app:
+    equityiq-backend:
         build:
             context: .
         ports:
@@ -9,5 +9,9 @@ services:
         environment:
             NODE_ENV: ${NODE_ENV}
             LOG_LEVEL: ${LOG_LEVEL}
+            NPM_AUTH_TOKEN: ${NPM_AUTH_TOKEN}
+            AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+            AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+            AWS_REGION: ${AWS_REGION}
         env_file:
             - .env
