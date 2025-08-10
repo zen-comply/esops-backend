@@ -7,6 +7,9 @@ import logger from './logger.js';
 dotenv.config(); // Load environment variables from .env
 
 import authRoutes from './routes/auth.route.js';
+import orgRoutes from './routes/org.route.js';
+
+import { verifyToken } from './middlewares/auth.middleware.js';
 
 const app = express();
 
@@ -38,5 +41,9 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+
+app.use(verifyToken);
+
+app.use('/organisations', orgRoutes);
 
 export default app; // Export for testing

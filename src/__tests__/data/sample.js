@@ -1,0 +1,28 @@
+const config = {
+    organisation: {
+        name: 'Test org',
+        email: 'john@zencomply.co',
+        admin: {
+            firstName: 'Esops',
+            lastName: 'Admin',
+            email: 'admin1@zencomply.co',
+            password: 'password',
+        },
+        address: {
+            address: 'Test address',
+            city: 'Test city',
+            zip: '12345',
+            StateId: 1,
+            taxId: '123456789',
+        },
+    },
+    users: {
+        harry: {
+            firstName: 'Harry',
+            lastName: 'Potter',
+            email: 'harry@zencomply.co',
+            password: 'password123+',
+        },
+    },
+};
+export default config;

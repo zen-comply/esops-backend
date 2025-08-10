@@ -1,0 +1,54 @@
+name: Run tests
+
+on:
+    push:
+        branches-ignore:
+            - main
+
+jobs:
+    lint-and-test:
+        name: Lint and Test
+        runs-on: self-hosted
+
+        steps:
+            - name: Clean up Docker
+              run: |
+                  docker system prune -af --volumes
+
+            - name: Checkout Code
+              uses: actions/checkout@v3
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ap-south-1
+
+            - name: Retrieve secrets from AWS Secrets Manager
+              id: get-secrets
+              run: |
+                  SECRET=$(aws secretsmanager get-secret-value --secret-id equityiq/backend/test --query SecretString --output text)
+                  echo "SECRET=$SECRET" >> $GITHUB_ENV
+
+            - name: Create .env file
+              run: |
+                  echo "$SECRET" | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > .env
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '22' # Use your project's Node.js version
+                  cache: 'npm'
+
+            - name: Create .npmrc file
+              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Run Lint
+              run: npm run lint
+
+            - name: Run tests
+              run: npm run docker:test
