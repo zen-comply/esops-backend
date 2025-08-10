@@ -7,6 +7,18 @@ class AuthService extends SequelizeService {
         super(params);
     }
 
+    async getUserByKey(key, value) {
+        const user = await this.req.db.models.User.findOne({
+            where: { [key]: value },
+            include: {
+                model: this.req.db.models.Organisation,
+                attributes: ['id', 'name', 'context'],
+            },
+            ...this.options, // Options from parent class
+        });
+        return user;
+    }
+
     async getUser({ email, password }) {
         if (!email || !password) {
             throw new Error('Email and password are required');

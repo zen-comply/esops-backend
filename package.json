@@ -6,13 +6,14 @@
     "main": "server.js",
     "scripts": {
         "swagger:generate": "node ./swagger/autogen.js",
-        "migrate": "npx sequelize-cli db:migrate",
+        "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
         "seed": "",
         "start": "nodemon src/server.js",
         "dev": "TZ=UTC npm run migrate && npm run seed && npm run swagger:generate && npm run start",
         "test": "TZ=UTC NODE_ENV=test mocha  --file ./src/__tests__/setup.js",
+        "docker:test": "docker compose down && docker compose build && docker compose run --rm equityiq-backend sh -c 'npm run db:reset:test && npm test'",
         "lint": "eslint .",
-        "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate",
+        "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
         "db:reset:test": "NODE_ENV=test npm run db:reset"
     },
     "repository": {
@@ -27,9 +28,12 @@
     },
     "homepage": "https://github.com/mayurvir/express-wrapper#readme",
     "dependencies": {
-        "@ensoai/esop-models": "^0.0.2",
+        "@aws-sdk/client-ses": "^3.864.0",
+        "@aws-sdk/client-sesv2": "^3.864.0",
+        "@ensoai/esop-models": "0.0.4",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
+        "handlebars": "^4.7.8",
         "jsonwebtoken": "^9.0.2",
         "swagger-autogen": "^2.23.7",
         "swagger-ui-express": "^5.0.1",

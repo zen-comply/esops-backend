@@ -16,7 +16,12 @@ class SequelizeService {
         this.req.db = db;
 
         // defined common functions
-        this.internalFunctions = [];
+        this.internalFunctions = [
+            'startTransaction',
+            'commit',
+            'rollback',
+            'updateRequestOptions',
+        ];
     }
 
     async startTransaction() {
