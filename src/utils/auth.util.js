@@ -19,8 +19,6 @@ export const generateSystemUserData = () => {
     return {
         firstName: `sys_${crypto.randomUUID().slice(0, 8)}`,
         lastName: `user_${crypto.randomUUID().slice(0, 8)}`,
-        clientKey: `ck_${crypto.randomBytes(16).toString('hex')}`,
-        clientSecret: `cs_${crypto.randomBytes(32).toString('hex')}`,
     };
 };
 

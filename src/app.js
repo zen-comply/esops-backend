@@ -12,6 +12,8 @@ import { verifyToken } from './middlewares/auth.middleware.js';
 import authRoutes from './routes/auth.route.js';
 import orgRoutes from './routes/org.route.js';
 import roleRoutes from './routes/role.route.js';
+import userRoutes from './routes/user.route.js';
+import { getMe } from './controllers/user.controller.js';
 
 const app = express();
 
@@ -58,7 +60,11 @@ app.use('/auth', authRoutes);
 
 app.use(verifyToken);
 
+// Get current user
+app.get('/me', getMe);
+
 app.use('/organisations', orgRoutes);
 app.use('/roles', roleRoutes);
+app.use('/users', userRoutes);
 
 export default app; // Export for testing
