@@ -43,10 +43,26 @@ before(async () => {
         tenant_safe: true,
     });
     logger.info('Default org created');
+
+    // Login with admin user
+    const adminResponse = await login(
+        sample.organisation.admin.email,
+        sample.organisation.admin.password
+    );
+    global.defaultOrg.adminToken = adminResponse.body.data.accessToken;
 });
 
 // Close the server after all tests are done
-after(() => {
+after(async () => {
+    await db.models.Organisation.destroy({
+        where: { name: sample.organisation.name },
+        force: true,
+    });
+    await db.models.User.destroy({
+        where: { email: sample.organisation.admin.email },
+        force: true,
+    });
+
     global.testServer.close();
 });
 

@@ -19,6 +19,17 @@
                 }
             }
         },
+        "/me": {
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get current user",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/auth/login": {
             "post": {
                 "tags": ["Auth"],
@@ -157,6 +168,213 @@
                     "default": {
                         "description": ""
                     }
+                }
+            }
+        },
+        "/roles/": {
+            "get": {
+                "tags": ["Roles"],
+                "description": "API to get all roles",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users/": {
+            "post": {
+                "tags": ["Manage Users"],
+                "description": "API to create a new user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                },
+                                "roles": {
+                                    "example": "any"
+                                },
+                                "notify": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get all users",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": ["Manage Users"],
+                "description": "API to update a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Manage Users"],
+                "description": "API to delete a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                },
+                "OrganisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
+            }
+        },
+        "UsersResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        },
+                        "total": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "page": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "limit": {
+                            "type": "number",
+                            "example": 10
+                        }
+                    }
+                }
+            }
+        },
+        "UpdateUserResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/User"
                 }
             }
         }

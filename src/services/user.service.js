@@ -55,8 +55,6 @@ class UserService extends TenantService {
         const userData = {
             firstName: data.firstName || null,
             lastName: data.lastName || null,
-            clientKey: data.clientKey || null,
-            clientSecret: data.clientSecret || null,
             email: data.email || null,
             password: data.password || null,
             OrganisationId: data.OrganisationId || this.tenantId,
@@ -66,6 +64,8 @@ class UserService extends TenantService {
 
         if (roles) {
             await user.setRoles(roles, this.req.options);
+        } else {
+            throw new Error('Roles are required to create a user');
         }
 
         if (notify) {
