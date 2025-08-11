@@ -1,0 +1,79 @@
+name: Deploy to dev
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    build-push-deploy:
+        runs-on: self-hosted
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+              with:
+                  ref: ${{ github.event.inputs.branch }}
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ap-south-1
+
+            - name: Retrieve secrets from AWS Secrets Manager
+              id: get-secrets
+              run: |
+                  SECRET=$(aws secretsmanager get-secret-value --secret-id equityiq/backend/dev --query SecretString --output text)
+                  echo "SECRET=$SECRET" >> $GITHUB_ENV
+
+            - name: Create .env file
+              run: |
+                  echo "$SECRET" | jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' > .env
+
+            - name: Write Google credentials file
+              run: |
+                  echo "$SECRET" | jq -r '.GOOGLE_APPLICATION_CREDENTIALS_JSON' > google.json
+            - name: Create .npmrc file
+              run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > .npmrc
+
+            - name: Create SSH key file
+              run: echo -e "${{ secrets.EC2_SSH_KEY }}" > ~/ec2_key
+              env:
+                  EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+
+            - name: Set permissions for SSH key file
+              run: chmod 600 ~/ec2_key
+
+            - name: Login to AWS ECR
+              run: |
+                  aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_URL }}
+
+            - name: Build and push Docker images
+              run: |
+                  docker compose build
+                  docker compose push
+
+            - name: Copy environment file
+              run: scp -i ~/ec2_key -o StrictHostKeyChecking=no ./.env ec2-user@${{ secrets.EC2_IP_DEV }}:~/.env
+
+            - name: Copy docker-compose.yml to the server
+              run: scp -i ~/ec2_key -o StrictHostKeyChecking=no ./docker-compose.yml ec2-user@${{ secrets.EC2_IP_DEV }}:~/docker-compose.yml
+
+            - name: SSH into EC2 instance and clean up Docker
+              run: |
+                  ssh -i ~/ec2_key ec2-user@${{ secrets.EC2_IP_DEV }} '
+                  docker system prune -af --volumes'
+              env:
+                  EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+
+            - name: SSH into EC2 instance and deploy
+              run: |
+                  ssh -i ~/ec2_key ec2-user@${{ secrets.EC2_IP_DEV }} '
+                  aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin ${{ secrets.AWS_ECR_URL }} &&
+                  cd ~/ &&
+                  docker-compose pull &&
+                  docker-compose up -d --remove-orphans'
+              env:
+                  EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
