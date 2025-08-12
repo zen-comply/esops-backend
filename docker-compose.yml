@@ -4,6 +4,10 @@ services:
     equityiq-backend:
         build:
             context: .
+            platforms:
+                - 'linux/amd64'
+        image: 730335200226.dkr.ecr.ap-south-1.amazonaws.com/equityiq/backend:latest
+        restart: always
         ports:
             - '${PORT}:${PORT}'
         environment:
