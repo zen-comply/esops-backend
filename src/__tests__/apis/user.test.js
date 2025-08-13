@@ -136,7 +136,7 @@ describe('Tests for current user api', async () => {
         expect(response.body.message).to.equal('Success');
         expect(response.body.data).to.be.an('object');
         expect(response.body.data).to.not.have.property('password');
-        expect(response.body.data).to.have.property('Organisation');
+        expect(response.body.data.user).to.have.property('Organisation');
     });
 
     it('Should be able to fetch current user for super admin', async () => {
@@ -147,7 +147,7 @@ describe('Tests for current user api', async () => {
         expect(response.body.message).to.equal('Success');
         expect(response.body.data).to.be.an('object');
         expect(response.body.data).to.not.have.property('password');
-        expect(response.body.data).to.have.property('Organisation');
+        expect(response.body.data.user).to.have.property('Organisation');
     });
 });
 
