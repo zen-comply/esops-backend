@@ -7,7 +7,7 @@
     "scripts": {
         "swagger:generate": "node ./swagger/autogen.js",
         "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-        "seed": "",
+        "seed": "npx sequelize-cli db:seed:all",
         "start": "nodemon src/server.js",
         "dev": "TZ=UTC npm run migrate && npm run seed && npm run swagger:generate && npm run start",
         "test": "TZ=UTC NODE_ENV=test mocha  --file ./src/__tests__/setup.js",
@@ -30,7 +30,7 @@
     "dependencies": {
         "@aws-sdk/client-ses": "^3.864.0",
         "@aws-sdk/client-sesv2": "^3.864.0",
-        "@ensoai/esop-models": "0.0.6",
+        "@ensoai/esop-models": "0.0.7",
         "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
