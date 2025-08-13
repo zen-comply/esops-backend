@@ -58,6 +58,7 @@ class UserService extends TenantService {
             email: data.email || null,
             password: data.password || null,
             OrganisationId: data.OrganisationId || this.tenantId,
+            status: data.status || 'created', // Default status
         };
 
         let user = await this.req.db.models.User.create(userData, this.options);
@@ -68,7 +69,7 @@ class UserService extends TenantService {
             throw new Error('Roles are required to create a user');
         }
 
-        if (notify) {
+        if (notify && user.status === 'active') {
             // send email
             const emailService = new EmailService(this.req);
             const token = await generateToken({ email: user.email }, '30d');

@@ -25,7 +25,15 @@ describe('FsmService', () => {
                                 'FsmService:createMachine',
                                 'FsmService:getMachines',
                                 'UserService:createUser',
+                                'UserService:getUserById',
                             ],
+                        },
+                    ],
+                    fsmActions: [
+                        {
+                            fsmKey: 'user',
+                            actions: ['APPROVE', 'REJECT', 'EXIT'],
+                            resource: '*',
                         },
                     ],
                 },
@@ -105,7 +113,7 @@ describe('FsmService', () => {
                 throw new Error('Expected an error to be thrown');
             } catch (error) {
                 expect(error.message).to.include(
-                    `Action ${action} is not allowed in status active`
+                    `Action 'invalidAction' is not permitted for FSM 'user' by current user policies.`
                 );
             }
         });

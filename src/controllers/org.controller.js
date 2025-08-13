@@ -54,6 +54,7 @@ export const createOrg = async (req, res) => {
             email: req.body.email,
             password: req.body.password || DEFAULT_PASSWORD, // Default
             OrganisationId: org.id,
+            status: 'active',
         };
 
         // get roles

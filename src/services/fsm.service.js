@@ -63,7 +63,33 @@ class FsmService extends TenantService {
             throw new Error(`Actions cannot be retrieved for ${modelName}.`);
         }
 
-        return await instance.getActions(this.options);
+        // Get all possible actions from the instance
+        let actions = await instance.getActions(this.options);
+
+        // Filter actions based on user policies (fsmActions)
+        const allowedActions = [];
+        if (Array.isArray(this.req.policies)) {
+            for (const policy of this.req.policies) {
+                if (Array.isArray(policy.fsmActions)) {
+                    for (const fsmPolicy of policy.fsmActions) {
+                        // Match fsmKey (case-insensitive) or resource '*'
+                        if (
+                            fsmPolicy.fsmKey?.toLowerCase() ===
+                            type.toLowerCase()
+                        ) {
+                            allowedActions.push(...fsmPolicy.actions);
+                        }
+                    }
+                }
+            }
+        }
+
+        // filter actions based on allowed actions
+        const filteredActions = actions.filter((action) =>
+            allowedActions.includes(action.eventType)
+        );
+
+        return filteredActions;
     }
 
     async transition(type, id, action, data = {}, file = null) {
@@ -79,6 +105,15 @@ class FsmService extends TenantService {
                 `FsmService: Model ${modelName} does not have a transition method.`
             );
             throw new Error(`Transition cannot be performed on ${modelName}.`);
+        }
+
+        // Check if the action is allowed for the user
+        const allowedActions = await this.getActions(type, id);
+        const isAllowed = allowedActions.some((a) => a.eventType === action);
+        if (!isAllowed) {
+            throw new Error(
+                `Action '${action}' is not permitted for FSM '${type}' by current user policies.`
+            );
         }
 
         // Upload file if provided

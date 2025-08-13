@@ -14,6 +14,14 @@ export const login = async (req, res) => {
             password: req.body.password,
         });
 
+        if (!['active', 'exited'].includes(user.status)) {
+            return res.sendError(
+                ['User is not active'],
+                'User is not active',
+                401
+            );
+        }
+
         // Prepare token
         const tokenObj = {
             email: user.email,

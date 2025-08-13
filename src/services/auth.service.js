@@ -33,6 +33,7 @@ class AuthService extends SequelizeService {
                     'password',
                     'firstName',
                     'lastName',
+                    'status',
                 ],
                 tenant_safe: true,
                 ...this.options,
