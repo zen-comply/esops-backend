@@ -122,7 +122,7 @@ describe('FSM tests for maker and approver', () => {
     const approverSample = {
         firstName: 'Approver',
         lastName: 'User',
-        email: 'approver.user@example.com',
+        email: 'approver@example.com',
         password: 'password',
     };
 

@@ -93,6 +93,27 @@ describe('Manage user apis', () => {
         user = response.body.data;
     });
 
+    it('Should be able to get versions for a user', async () => {
+        const response = await request(global.testServer)
+            .get('/versions')
+            .query({
+                page: 1,
+                limit: 10,
+                sortBy: 'createdAt',
+                sortOrder: 'DESC',
+                filters: encodeURIComponent(
+                    JSON.stringify({
+                        versionFor: 'user',
+                        versionForId: user.id,
+                    })
+                ),
+            })
+            .set(`Authorization`, `Bearer ${global.defaultOrg.adminToken}`);
+        expect(response.status).to.equal(200);
+        expect(response.body.data.rows).to.be.an('array');
+        expect(response.body.data.rows.length).to.be.greaterThan(0);
+    });
+
     it('Should be able to get all users', async () => {
         const response = await getUsers(adminToken);
         expect(response.status).to.equal(200);
