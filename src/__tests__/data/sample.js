@@ -23,6 +23,12 @@ const config = {
             email: 'harry@zencomply.co',
             password: 'password123+',
         },
+        approver: {
+            firstName: 'Approver',
+            lastName: 'User',
+            email: 'approver.user@example.com',
+            password: 'password',
+        },
     },
 };
 export default config;

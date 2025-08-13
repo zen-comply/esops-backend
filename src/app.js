@@ -14,6 +14,7 @@ import orgRoutes from './routes/org.route.js';
 import roleRoutes from './routes/role.route.js';
 import userRoutes from './routes/user.route.js';
 import fsmRoutes from './routes/fsm.route.js';
+import versionRoutes from './routes/version.route.js';
 import { getMe } from './controllers/user.controller.js';
 
 const app = express();
@@ -68,5 +69,6 @@ app.use('/organisations', orgRoutes);
 app.use('/roles', roleRoutes);
 app.use('/users', userRoutes);
 app.use('/objects', fsmRoutes);
+app.use('/versions', versionRoutes);
 
 export default app; // Export for testing

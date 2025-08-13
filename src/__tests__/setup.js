@@ -3,6 +3,7 @@ import logger from '../logger.js';
 import request from 'supertest';
 import sample from './data/sample.js';
 import db from '../config/database.js';
+import { createUser, getRoles } from './apis/user.test.js';
 
 const TEST_PORT = 3001;
 
@@ -50,6 +51,20 @@ before(async () => {
         sample.organisation.admin.password
     );
     global.defaultOrg.adminToken = adminResponse.body.data.accessToken;
+
+    const roles = await getRoles(global.defaultOrg.adminToken);
+
+    // Create an approver
+    const approverResponse = await createUser(
+        {
+            ...sample.users.approver,
+            roles: roles.body.data
+                .filter((role) => role.name === 'Approver')
+                .map((role) => role.id),
+        },
+        global.defaultOrg.adminToken
+    );
+    global.defaultOrg.approver = approverResponse.body.data;
 });
 
 // Close the server after all tests are done
