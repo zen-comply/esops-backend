@@ -155,7 +155,10 @@ export const getMe = async (req, res) => {
         const userService = new UserService(req);
         const user = await userService.getUserById(req.user.id);
 
-        res.sendSuccess(user);
+        res.sendSuccess({
+            user,
+            policies: req.policies,
+        });
     } catch (e) {
         logger.error(e);
         res.sendError([e.message], 'Error', 400);
