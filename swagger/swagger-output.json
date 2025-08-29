@@ -1,606 +1,569 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "API documentation",
-    "description": "APIs for exprees app",
-    "version": "1.0.0"
-  },
-  "host": "127.0.0.1:3002",
-  "basePath": "/",
-  "schemes": [
-    "http"
-  ],
-  "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
+    "swagger": "2.0",
+    "info": {
+        "title": "API documentation",
+        "description": "APIs for exprees app",
+        "version": "1.0.0"
     },
-    "/me": {
-      "get": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to get current user",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
+    "host": "127.0.0.1:3002",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/organisations/": {
-      "get": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Get all organisations  *",
-        "parameters": [
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Create an organisation",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
+        },
+        "/me": {
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get current user",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/organisations/{id}": {
-      "put": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Update an organisation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "context": {
-                  "example": "any"
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Delete an organisation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/roles/": {
-      "get": {
-        "tags": [
-          "Roles"
-        ],
-        "description": "API to get all roles",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/users/": {
-      "post": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to create a new user",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "roles": {
-                  "example": "any"
-                },
-                "notify": {
-                  "example": "any"
+        },
+        "/organisations/": {
+            "get": {
+                "tags": ["Manage Organisations"],
+                "description": "Get all organisations  *",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to get all users",
-        "parameters": [
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "put": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to update a user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to delete a user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/objects/{type}/{id}/actions": {
-      "get": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to get all actions for a model",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/objects/{type}/{id}/transition": {
-      "post": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to perform a transition on a model",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "action": {
-                  "example": "any"
-                },
-                "data": {
-                  "example": "any"
+            },
+            "post": {
+                "tags": ["Manage Organisations"],
+                "description": "Create an organisation",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "example": "any"
+                                },
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
+        },
+        "/organisations/{id}": {
+            "put": {
+                "tags": ["Manage Organisations"],
+                "description": "Update an organisation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "example": "any"
+                                },
+                                "context": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Manage Organisations"],
+                "description": "Delete an organisation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/roles/": {
+            "get": {
+                "tags": ["Roles"],
+                "description": "API to get all roles",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users/": {
+            "post": {
+                "tags": ["Manage Users"],
+                "description": "API to create a new user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                },
+                                "roles": {
+                                    "example": "any"
+                                },
+                                "notify": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get all users",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": ["Manage Users"],
+                "description": "API to update a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Manage Users"],
+                "description": "API to delete a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/{type}/{id}/actions": {
+            "get": {
+                "tags": ["FSM APIs"],
+                "description": "API to get all actions for a model",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/{type}/{id}/transition": {
+            "post": {
+                "tags": ["FSM APIs"],
+                "description": "API to perform a transition on a model",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "action": {
+                                    "example": "any"
+                                },
+                                "data": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/machines": {
+            "post": {
+                "tags": ["FSM APIs"],
+                "description": "API to create a state machine",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "tags": ["FSM APIs"],
+                "description": "API to get state machines",
+                "parameters": [
+                    {
+                        "name": "attributes",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "filters",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/versions/": {
+            "get": {
+                "tags": ["Manage Versions"],
+                "description": "API to get all versions",
+                "parameters": [
+                    {
+                        "name": "groupBy",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Sort by field",
+                        "required": false,
+                        "type": "string",
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "description": "Sort order",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["ASC", "DESC"],
+                        "in": "query"
+                    },
+                    {
+                        "name": "filters",
+                        "description": "Filters to apply",
+                        "required": false,
+                        "type": "object",
+                        "in": "query"
+                    },
+                    {
+                        "name": "attributes",
+                        "description": "Attributes to include",
+                        "required": false,
+                        "type": "array",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
         }
-      }
     },
-    "/objects/machines": {
-      "post": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to create a state machine",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to get state machines",
-        "parameters": [
-          {
-            "name": "attributes",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "sortOrder",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/versions/": {
-      "get": {
-        "tags": [
-          "Manage Versions"
-        ],
-        "description": "API to get all versions",
-        "parameters": [
-          {
-            "name": "groupBy",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "sortBy",
-            "description": "Sort by field",
-            "required": false,
-            "type": "string",
-            "in": "query"
-          },
-          {
-            "name": "sortOrder",
-            "description": "Sort order",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "ASC",
-              "DESC"
-            ],
-            "in": "query"
-          },
-          {
-            "name": "filters",
-            "description": "Filters to apply",
-            "required": false,
-            "type": "object",
-            "in": "query"
-          },
-          {
-            "name": "attributes",
-            "description": "Attributes to include",
-            "required": false,
-            "type": "array",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
-        "firstName": {
-          "type": "string",
-          "example": "John"
-        },
-        "lastName": {
-          "type": "string",
-          "example": "Doe"
-        },
-        "email": {
-          "type": "string",
-          "example": "john.doe@example.com"
-        },
-        "OrganisationId": {
-          "type": "number",
-          "example": 1
-        },
-        "roles": {
-          "type": "array",
-          "items": {
+    "definitions": {
+        "User": {
             "type": "object",
             "properties": {
-              "id": {
-                "type": "number",
-                "example": 1
-              },
-              "name": {
-                "type": "string",
-                "example": "Admin"
-              }
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                },
+                "OrganisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
             }
-          }
         },
-        "createdAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        }
-      }
-    },
-    "UsersResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
-              }
-            },
-            "total": {
-              "type": "number",
-              "example": 1
-            },
-            "page": {
-              "type": "number",
-              "example": 1
-            },
-            "limit": {
-              "type": "number",
-              "example": 10
+        "UsersResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        },
+                        "total": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "page": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "limit": {
+                            "type": "number",
+                            "example": 10
+                        }
+                    }
+                }
             }
-          }
-        }
-      }
-    },
-    "UpdateUserResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
         },
-        "data": {
-          "$ref": "#/definitions/User"
+        "UpdateUserResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/User"
+                }
+            }
         }
-      }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
     }
-  },
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
-  }
 }
