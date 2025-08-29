@@ -460,6 +460,62 @@
                     }
                 }
             }
+        },
+        "/plans/": {
+            "get": {
+                "tags": ["Plans"],
+                "description": "Get all plans",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Plans"],
+                "description": "Create a new plan",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/plans/{id}": {
+            "put": {
+                "tags": ["Plans"],
+                "description": "Update a plan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Plans"],
+                "description": "Delete a plan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
         }
     },
     "definitions": {
