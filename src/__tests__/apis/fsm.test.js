@@ -47,7 +47,7 @@ describe('FSM API tests', () => {
         expect(response.body.data).to.be.an('array');
     });
 
-    it('should perform a transition on an invoice', async () => {
+    it('should perform a transition on a user', async () => {
         const response = await request(global.testServer)
             .post(`/objects/user/${user.id}/transition`)
             .set('Authorization', `Bearer ${adminToken}`)

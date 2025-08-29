@@ -15,6 +15,7 @@ import roleRoutes from './routes/role.route.js';
 import userRoutes from './routes/user.route.js';
 import fsmRoutes from './routes/fsm.route.js';
 import versionRoutes from './routes/version.route.js';
+import planRoutes from './routes/plan.route.js';
 import { getMe } from './controllers/user.controller.js';
 
 const app = express();
@@ -70,5 +71,6 @@ app.use('/roles', roleRoutes);
 app.use('/users', userRoutes);
 app.use('/objects', fsmRoutes);
 app.use('/versions', versionRoutes);
+app.use('/plans', planRoutes);
 
 export default app; // Export for testing
