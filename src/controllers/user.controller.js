@@ -6,28 +6,28 @@ export const createUser = async (req, res) => {
      * #swagger.tags = ['Manage Users']
      * #swagger.description = 'API to create a new user'
      * #swagger.parameters['body'] = {
-     *      in: 'body',
-     *      required: true,
-     *      schema: {
-     *          firstName: { type: 'string', required: true },
-     *          lastName: { type: 'string', required: true },
-     *          email: { type: 'string', required: true },
-     *          password: { type: 'string', required: true },
-     *          roles: { type: 'array', items: { type: 'integer' }, required: true },
-     *          notify: { type: 'boolean', required: false }
-     *      }
-     * }
+           in: 'body',
+           required: true,
+           schema: {
+               firstName: { type: 'string', required: true },
+               lastName: { type: 'string', required: true },
+               email: { type: 'string', required: true },
+               password: { type: 'string', required: true },
+               roles: { type: 'array', items: { type: 'integer' }, required: true },
+               notify: { type: 'boolean', required: false }
+           }
+      }
      * #swagger.responses[200] = {
-     *      description: 'User created successfully',
-     *      schema: { $ref: '#/definitions/User' }
-     * }
+           description: 'User created successfully',
+           schema: { $ref: '#/definitions/User' }
+      }
      * #swagger.responses[400] = {
-     *      description: 'Validation error',
-     *      schema: {
-     *          message: 'Error',
-     *          errors: [{ type: 'string' }]
-     *      }
-     * }
+           description: 'Validation error',
+           schema: {
+               message: 'Error',
+               errors: [{ type: 'string' }]
+           }
+      }
      */
 
     const userService = new UserService(req);
@@ -64,16 +64,16 @@ export const getUsers = async (req, res) => {
      * #swagger.parameters['page'] = { description: 'Page number', required: false, type: 'integer' }
      * #swagger.parameters['limit'] = { description: 'Number of items per page', required: false, type: 'integer' }
      * #swagger.responses[200] = {
-     *      description: 'List of users',
-     *      schema: { $ref: '#/definitions/UsersResponse' }
-     * }
+           description: 'List of users',
+           schema: { $ref: '#/definitions/UsersResponse' }
+      }
      * #swagger.responses[400] = {
-     *      description: 'Validation error',
-     *      schema: {
-     *          message: 'Error',
-     *          errors: [{ type: 'string' }]
-     *      }
-     * }
+           description: 'Validation error',
+           schema: {
+               message: 'Error',
+               errors: [{ type: 'string' }]
+           }
+      }
      */
     try {
         let page = req.query.page ? parseInt(req.query.page, 10) : 1;
@@ -92,28 +92,28 @@ export const updateUser = async (req, res) => {
      * #swagger.tags = ['Manage Users']
      * #swagger.description = 'API to update a user'
      * #swagger.parameters['body'] = {
-     *      in: 'body',
-     *      required: true,
-     *      schema: {
-     *          firstName: { type: 'string', required: false },
-     *          lastName: { type: 'string', required: false },
-     *          email: { type: 'string', required: false },
-     *          password: { type: 'string', required: false },
-     *          roles: { type: 'array', items: { type: 'integer' }, required: false },
-     *          notify: { type: 'boolean', required: false }
-     *      }
-     * }
+           in: 'body',
+           required: true,
+           schema: {
+               firstName: { type: 'string', required: false },
+               lastName: { type: 'string', required: false },
+               email: { type: 'string', required: false },
+               password: { type: 'string', required: false },
+               roles: { type: 'array', items: { type: 'integer' }, required: false },
+               notify: { type: 'boolean', required: false }
+           }
+      }
      * #swagger.responses[200] = {
-     *      description: 'User updated successfully',
-     *      schema: { $ref: '#/definitions/UpdateUserResponse' }
-     * }
+           description: 'User updated successfully',
+           schema: { $ref: '#/definitions/UpdateUserResponse' }
+      }
      * #swagger.responses[400] = {
-     *      description: 'Validation error',
-     *      schema: {
-     *          message: 'Error',
-     *          errors: [{ type: 'string' }]
-     *      }
-     * }
+           description: 'Validation error',
+           schema: {
+               message: 'Error',
+               errors: [{ type: 'string' }]
+           }
+      }
      */
     try {
         const userService = new UserService(req);

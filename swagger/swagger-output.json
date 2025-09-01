@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "API documentation",
+        "title": "Equity IQ API docs",
         "description": "APIs for exprees app",
         "version": "1.0.0"
     },
@@ -190,34 +190,134 @@
                     {
                         "name": "body",
                         "in": "body",
+                        "required": true,
                         "schema": {
                             "type": "object",
                             "properties": {
                                 "firstName": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
                                 },
                                 "lastName": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
                                 },
                                 "email": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
                                 },
                                 "password": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
                                 },
                                 "roles": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "array"
+                                        },
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "integer"
+                                                }
+                                            }
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
                                 },
                                 "notify": {
-                                    "example": "any"
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "boolean"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 ],
                 "responses": {
-                    "default": {
-                        "description": ""
+                    "200": {
+                        "description": "User created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
                     }
                 }
             },
@@ -241,8 +341,38 @@
                     }
                 ],
                 "responses": {
-                    "default": {
-                        "description": ""
+                    "200": {
+                        "description": "List of users",
+                        "schema": {
+                            "$ref": "#/definitions/UsersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
                     }
                 }
             }
@@ -257,11 +387,138 @@
                         "in": "path",
                         "required": true,
                         "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "lastName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "email": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "password": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "roles": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "array"
+                                        },
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "integer"
+                                                }
+                                            }
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "notify": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "boolean"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 ],
                 "responses": {
-                    "default": {
-                        "description": ""
+                    "200": {
+                        "description": "User updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
                     }
                 }
             },
@@ -516,6 +773,78 @@
                     }
                 }
             }
+        },
+        "/schedules/": {
+            "get": {
+                "tags": ["Schedules"],
+                "description": "Get all schedules",
+                "responses": {
+                    "200": {
+                        "description": "List of schedules",
+                        "schema": {
+                            "$ref": "#/definitions/SchedulesResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Schedules"],
+                "description": "Create a new schedule",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Schedule"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Schedule created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/ScheduleResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/schedules/{id}": {
+            "put": {
+                "tags": ["Schedules"],
+                "description": "Update a schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Schedules"],
+                "description": "Delete a schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -609,6 +938,70 @@
                 },
                 "data": {
                     "$ref": "#/definitions/User"
+                }
+            }
+        },
+        "Schedule": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Vesting Schedule"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Standard 4-year vesting with 1-year cliff"
+                },
+                "cliff": {
+                    "type": "number",
+                    "example": 12
+                },
+                "periods": {
+                    "type": "number",
+                    "example": 4
+                },
+                "organisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
+            }
+        },
+        "SchedulesResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Schedule"
+                    }
+                }
+            }
+        },
+        "ScheduleResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/Schedule"
                 }
             }
         }
