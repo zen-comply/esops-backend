@@ -32,7 +32,7 @@
         "@aws-sdk/client-ses": "^3.864.0",
         "@aws-sdk/client-sesv2": "^3.864.0",
         "@aws-sdk/lib-storage": "^3.864.0",
-        "@ensoai/esop-models": "0.4.0-dev.1",
+        "@ensoai/esop-models": "0.4.0",
         "cors": "^2.8.5",
         "date-fns": "^4.1.0",
         "dotenv": "^16.4.7",

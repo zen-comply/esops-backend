@@ -17,6 +17,8 @@ import fsmRoutes from './routes/fsm.route.js';
 import versionRoutes from './routes/version.route.js';
 import planRoutes from './routes/plan.route.js';
 import scheduleRoutes from './routes/schedule.route.js';
+import grantRoutes from './routes/grant.route.js';
+import myRoutes from './routes/my.route.js';
 import { getMe } from './controllers/user.controller.js';
 
 const app = express();
@@ -74,5 +76,7 @@ app.use('/objects', fsmRoutes);
 app.use('/versions', versionRoutes);
 app.use('/plans', planRoutes);
 app.use('/schedules', scheduleRoutes);
+app.use('/grants', grantRoutes);
+app.use('/my', myRoutes);
 
 export default app; // Export for testing

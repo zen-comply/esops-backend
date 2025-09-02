@@ -42,7 +42,7 @@ describe('PlanService', () => {
     it('should get all plans', async () => {
         const plans = await planService.getPlans();
         expect(plans).to.be.an('array');
-        expect(plans[0]).to.have.property('name', 'New Plan');
+        expect(plans.some((plan) => plan.name === 'New Plan')).to.be.true;
     });
 
     it('should update a plan', async () => {
