@@ -65,6 +65,20 @@ before(async () => {
         global.defaultOrg.adminToken
     );
     global.defaultOrg.approver = approverResponse.body.data;
+
+    // Create a default plan
+    const planResponse = await createPlan(
+        sample.plans.defaultPlan,
+        global.defaultOrg.adminToken
+    );
+    global.defaultOrg.defaultPlan = planResponse.body.data;
+    logger.info('Default plan created');
+
+    // set Schedules
+    global.defaultOrg.schedule1 = await db.models.Schedule.findByPk(
+        'default-4y-monthly',
+        { tenant_safe: true }
+    );
 });
 
 // Close the server after all tests are done
@@ -98,4 +112,11 @@ export const createOrganisation = async (name, admin) => {
             ...admin,
         });
     return response;
+};
+
+export const createPlan = async (data, token) => {
+    return await request(global.testServer)
+        .post('/plans')
+        .set(`Authorization`, `Bearer ${token}`)
+        .send(data);
 };

@@ -845,6 +845,120 @@
                     }
                 }
             }
+        },
+        "/grants/": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get all grants",
+                "responses": {
+                    "200": {
+                        "description": "List of grants",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Grants"],
+                "description": "Create a new grant",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/grants/{id}": {
+            "put": {
+                "tags": ["Grants"],
+                "description": "Update a grant",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grant by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant details",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/grants/my": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grants for current user",
+                "responses": {
+                    "200": {
+                        "description": "List of grants for current user",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/my/grants": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grants for current user",
+                "responses": {
+                    "200": {
+                        "description": "List of grants for current user",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -1002,6 +1116,82 @@
                 },
                 "data": {
                     "$ref": "#/definitions/Schedule"
+                }
+            }
+        },
+        "Grant": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "UserId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "PlanId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "OrganisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "ScheduleId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "grantDate": {
+                    "type": "string",
+                    "example": "2022-01-01"
+                },
+                "strikePrice": {
+                    "type": "number",
+                    "example": 10
+                },
+                "granted": {
+                    "type": "number",
+                    "example": 100
+                },
+                "status": {
+                    "type": "string",
+                    "example": "draft"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
+            }
+        },
+        "GrantsResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Grant"
+                    }
+                }
+            }
+        },
+        "GrantResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/Grant"
                 }
             }
         }

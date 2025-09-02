@@ -59,6 +59,27 @@ const doc = {
             message: 'Success',
             data: { $ref: '#/definitions/Schedule' },
         },
+        Grant: {
+            id: 1,
+            UserId: 1,
+            PlanId: 1,
+            OrganisationId: 1,
+            ScheduleId: 1,
+            grantDate: '2022-01-01',
+            strikePrice: 10,
+            granted: 100,
+            status: 'draft',
+            createdAt: '2025-08-11T00:00:00.000Z',
+            updatedAt: '2025-08-11T00:00:00.000Z',
+        },
+        GrantsResponse: {
+            message: 'Success',
+            data: [{ $ref: '#/definitions/Grant' }],
+        },
+        GrantResponse: {
+            message: 'Success',
+            data: { $ref: '#/definitions/Grant' },
+        },
     },
 };
 

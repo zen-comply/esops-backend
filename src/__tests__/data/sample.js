@@ -30,5 +30,8 @@ const config = {
             password: 'password',
         },
     },
+    plans: {
+        defaultPlan: { name: 'API Plan', size: 500000, type: 'ESOP' },
+    },
 };
 export default config;
