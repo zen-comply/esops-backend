@@ -4,7 +4,7 @@ config();
 
 const doc = {
     info: {
-        title: 'API documentation',
+        title: 'Equity IQ API docs',
         description: 'APIs for exprees app',
     },
     host: `127.0.0.1:${process.env.PORT}`,
@@ -40,6 +40,24 @@ const doc = {
         UpdateUserResponse: {
             message: 'Success',
             data: { $ref: '#/definitions/User' },
+        },
+        Schedule: {
+            id: 1,
+            title: 'Vesting Schedule',
+            description: 'Standard 4-year vesting with 1-year cliff',
+            cliff: 12,
+            periods: 4,
+            organisationId: 1,
+            createdAt: '2025-08-11T00:00:00.000Z',
+            updatedAt: '2025-08-11T00:00:00.000Z',
+        },
+        SchedulesResponse: {
+            message: 'Success',
+            data: [{ $ref: '#/definitions/Schedule' }],
+        },
+        ScheduleResponse: {
+            message: 'Success',
+            data: { $ref: '#/definitions/Schedule' },
         },
     },
 };

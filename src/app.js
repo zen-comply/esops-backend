@@ -16,6 +16,7 @@ import userRoutes from './routes/user.route.js';
 import fsmRoutes from './routes/fsm.route.js';
 import versionRoutes from './routes/version.route.js';
 import planRoutes from './routes/plan.route.js';
+import scheduleRoutes from './routes/schedule.route.js';
 import { getMe } from './controllers/user.controller.js';
 
 const app = express();
@@ -46,7 +47,7 @@ try {
         readFileSync('./swagger/swagger-output.json')
     );
     app.use(
-        '/api-docs',
+        '/docs',
         swaggerUI.serve,
         swaggerUI.setup(swaggerDocument, { explorer: true })
     );
@@ -72,5 +73,6 @@ app.use('/users', userRoutes);
 app.use('/objects', fsmRoutes);
 app.use('/versions', versionRoutes);
 app.use('/plans', planRoutes);
+app.use('/schedules', scheduleRoutes);
 
 export default app; // Export for testing
