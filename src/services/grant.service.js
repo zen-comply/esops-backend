@@ -1,5 +1,5 @@
 import TenantService from './tenant.service.js';
-
+import { Op } from 'sequelize';
 class GrantService extends TenantService {
     constructor(req) {
         super(req);
@@ -86,6 +86,9 @@ class GrantService extends TenantService {
             ...this.options,
             where: {
                 UserId: this.req.user.id,
+                status: {
+                    [Op.ne]: ['draft'],
+                },
             },
             include: [
                 this.req.db.models.User,

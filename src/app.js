@@ -20,6 +20,7 @@ import scheduleRoutes from './routes/schedule.route.js';
 import grantRoutes from './routes/grant.route.js';
 import myRoutes from './routes/my.route.js';
 import { getMe } from './controllers/user.controller.js';
+import templateRoutes from './routes/templates.route.js';
 
 const app = express();
 
@@ -78,5 +79,6 @@ app.use('/plans', planRoutes);
 app.use('/schedules', scheduleRoutes);
 app.use('/grants', grantRoutes);
 app.use('/my', myRoutes);
+app.use('/templates', templateRoutes);
 
 export default app; // Export for testing

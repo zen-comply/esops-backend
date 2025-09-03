@@ -117,7 +117,14 @@ class UserService extends TenantService {
             lastName: data.lastName,
             email: data.email,
         };
-        return await user.update(updatedData, this.options);
+        await user.update(updatedData, this.options);
+
+        // Update roles if provided
+        if (Array.isArray(data.roles) && data.roles.length > 0) {
+            await user.setRoles(data.roles, this.req.options);
+        }
+
+        return user;
     }
 
     /**

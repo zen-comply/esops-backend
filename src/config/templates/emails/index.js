@@ -21,23 +21,31 @@ const loadHtmlFile = (filename) => {
 // Define the templates
 const templates = {
     WelcomeEmail: {
-        TemplateName: 'WelcomeEmail',
+        TemplateName: 'EIQWelcomeEmail',
         SubjectPart: 'Welcome to EquityiQ!',
         HtmlPart: loadHtmlFile('welcome-email.html'),
         TextPart: 'Welcome {{name}}! We are glad to have you.',
     },
     PasswordSet: {
-        TemplateName: 'PasswordSet',
+        TemplateName: 'EIQPasswordSet',
         SubjectPart: 'Set Your Password',
         HtmlPart: loadHtmlFile('password-set.html'),
         TextPart: 'Click this link to set your password: {{resetLink}}',
     },
     ForgotPassword: {
-        TemplateName: 'ForgotPassword',
+        TemplateName: 'EIQForgotPassword',
         SubjectPart: 'Set Your Password',
         HtmlPart: loadHtmlFile('forgot-password.html'),
         TextPart: 'Click this link to set your password: {{resetLink}}',
     },
+    NewGrant: {
+        TemplateName: 'EIQNewGrant',
+        SubjectPart: 'You have a new option grant!',
+        HtmlPart: loadHtmlFile('new-grant.html'),
+        TextPart:
+            'You have been issued a new option grant. Log in to your account to view the details.',
+    },
+    // Add more templates as needed
 };
 
 // Export the templates
