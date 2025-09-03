@@ -1,1273 +1,1208 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "Equity IQ API docs",
-    "description": "APIs for exprees app",
-    "version": "1.0.0"
-  },
-  "host": "127.0.0.1:3002",
-  "basePath": "/",
-  "schemes": [
-    "http"
-  ],
-  "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
+    "swagger": "2.0",
+    "info": {
+        "title": "Equity IQ API docs",
+        "description": "APIs for exprees app",
+        "version": "1.0.0"
     },
-    "/me": {
-      "get": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to get current user",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/auth/login": {
-      "post": {
-        "tags": [
-          "Auth"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
+    "host": "127.0.0.1:3002",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+        "/": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/organisations/": {
-      "get": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Get all organisations  *",
-        "parameters": [
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Create an organisation",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "firstName": {
-                  "example": "any"
-                },
-                "lastName": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
+        },
+        "/me": {
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get current user",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/organisations/{id}": {
-      "put": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Update an organisation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "context": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Manage Organisations"
-        ],
-        "description": "Delete an organisation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/roles/": {
-      "get": {
-        "tags": [
-          "Roles"
-        ],
-        "description": "API to get all roles",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/users/": {
-      "post": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to create a new user",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                },
-                "lastName": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                },
-                "email": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                },
-                "password": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                },
-                "roles": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "array"
-                    },
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "integer"
+        },
+        "/auth/login": {
+            "post": {
+                "tags": ["Auth"],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                }
+                            }
                         }
-                      }
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": true
                     }
-                  }
-                },
-                "notify": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "boolean"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
                     }
-                  }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User created successfully",
-            "schema": {
-              "$ref": "#/definitions/User"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Error"
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "example": "string"
-                      }
+        },
+        "/organisations/": {
+            "get": {
+                "tags": ["Manage Organisations"],
+                "description": "Get all organisations  *",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
                     }
-                  }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to get all users",
-        "parameters": [
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of users",
-            "schema": {
-              "$ref": "#/definitions/UsersResponse"
-            }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Error"
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string",
-                        "example": "string"
-                      }
-                    }
-                  }
-                }
-              },
-              "xml": {
-                "name": "main"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/{id}": {
-      "put": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to update a user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "firstName": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
-                    }
-                  }
-                },
-                "lastName": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
-                    }
-                  }
-                },
-                "email": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
-                    }
-                  }
-                },
-                "password": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
-                    }
-                  }
-                },
-                "roles": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "array"
-                    },
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "type": {
-                          "type": "string",
-                          "example": "integer"
+            },
+            "post": {
+                "tags": ["Manage Organisations"],
+                "description": "Create an organisation",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "example": "any"
+                                },
+                                "firstName": {
+                                    "example": "any"
+                                },
+                                "lastName": {
+                                    "example": "any"
+                                },
+                                "email": {
+                                    "example": "any"
+                                },
+                                "password": {
+                                    "example": "any"
+                                }
+                            }
                         }
-                      }
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
                     }
-                  }
-                },
-                "notify": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "boolean"
-                    },
-                    "required": {
-                      "type": "boolean",
-                      "example": false
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
                     }
-                  }
                 }
-              }
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User updated successfully",
-            "schema": {
-              "$ref": "#/definitions/UpdateUserResponse"
+        },
+        "/organisations/{id}": {
+            "put": {
+                "tags": ["Manage Organisations"],
+                "description": "Update an organisation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "example": "any"
+                                },
+                                "context": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Manage Organisations"],
+                "description": "Delete an organisation",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
             }
-          },
-          "400": {
-            "description": "Validation error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Error"
-                },
-                "errors": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
+        },
+        "/roles/": {
+            "get": {
+                "tags": ["Roles"],
+                "description": "API to get all roles",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/users/": {
+            "post": {
+                "tags": ["Manage Users"],
+                "description": "API to create a new user",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
+                                },
+                                "lastName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
+                                },
+                                "email": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
+                                },
+                                "password": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
+                                },
+                                "roles": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "array"
+                                        },
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "integer"
+                                                }
+                                            }
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    }
+                                },
+                                "notify": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "boolean"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Manage Users"],
+                "description": "API to get all users",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of users",
+                        "schema": {
+                            "$ref": "#/definitions/UsersResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": ["Manage Users"],
+                "description": "API to update a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "lastName": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "email": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "password": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "string"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "roles": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "array"
+                                        },
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "example": "integer"
+                                                }
+                                            }
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "notify": {
+                                    "type": "object",
+                                    "properties": {
+                                        "type": {
+                                            "type": "string",
+                                            "example": "boolean"
+                                        },
+                                        "required": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/UpdateUserResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Error"
+                                },
+                                "errors": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "type": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "xml": {
+                                "name": "main"
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Manage Users"],
+                "description": "API to delete a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/{type}/{id}/actions": {
+            "get": {
+                "tags": ["FSM APIs"],
+                "description": "API to get all actions for a model",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/{type}/{id}/transition": {
+            "post": {
+                "tags": ["FSM APIs"],
+                "description": "API to perform a transition on a model",
+                "parameters": [
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "action": {
+                                    "example": "any"
+                                },
+                                "data": {
+                                    "example": "any"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/objects/machines": {
+            "post": {
+                "tags": ["FSM APIs"],
+                "description": "API to create a state machine",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "get": {
+                "tags": ["FSM APIs"],
+                "description": "API to get state machines",
+                "parameters": [
+                    {
+                        "name": "attributes",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "filters",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortBy",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/versions/": {
+            "get": {
+                "tags": ["Manage Versions"],
+                "description": "API to get all versions",
+                "parameters": [
+                    {
+                        "name": "groupBy",
+                        "in": "query",
+                        "type": "string"
+                    },
+                    {
+                        "name": "page",
+                        "description": "Page number",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "limit",
+                        "description": "Number of items per page",
+                        "required": false,
+                        "type": "integer",
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortBy",
+                        "description": "Sort by field",
+                        "required": false,
                         "type": "string",
-                        "example": "string"
-                      }
+                        "in": "query"
+                    },
+                    {
+                        "name": "sortOrder",
+                        "description": "Sort order",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["ASC", "DESC"],
+                        "in": "query"
+                    },
+                    {
+                        "name": "filters",
+                        "description": "Filters to apply",
+                        "required": false,
+                        "type": "object",
+                        "in": "query"
+                    },
+                    {
+                        "name": "attributes",
+                        "description": "Attributes to include",
+                        "required": false,
+                        "type": "array",
+                        "in": "query"
                     }
-                  }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              },
-              "xml": {
-                "name": "main"
-              }
             }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Manage Users"
-        ],
-        "description": "API to delete a user",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/objects/{type}/{id}/actions": {
-      "get": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to get all actions for a model",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/objects/{type}/{id}/transition": {
-      "post": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to perform a transition on a model",
-        "parameters": [
-          {
-            "name": "type",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "action": {
-                  "example": "any"
-                },
-                "data": {
-                  "example": "any"
+        },
+        "/plans/": {
+            "get": {
+                "tags": ["Plans"],
+                "description": "Get all plans",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
                 }
-              }
+            },
+            "post": {
+                "tags": ["Plans"],
+                "description": "Create a new plan",
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
             }
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/objects/machines": {
-      "post": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to create a state machine",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "FSM APIs"
-        ],
-        "description": "API to get state machines",
-        "parameters": [
-          {
-            "name": "attributes",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "filters",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "sortOrder",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/versions/": {
-      "get": {
-        "tags": [
-          "Manage Versions"
-        ],
-        "description": "API to get all versions",
-        "parameters": [
-          {
-            "name": "groupBy",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "page",
-            "description": "Page number",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "limit",
-            "description": "Number of items per page",
-            "required": false,
-            "type": "integer",
-            "in": "query"
-          },
-          {
-            "name": "sortBy",
-            "description": "Sort by field",
-            "required": false,
-            "type": "string",
-            "in": "query"
-          },
-          {
-            "name": "sortOrder",
-            "description": "Sort order",
-            "required": false,
-            "type": "string",
-            "enum": [
-              "ASC",
-              "DESC"
-            ],
-            "in": "query"
-          },
-          {
-            "name": "filters",
-            "description": "Filters to apply",
-            "required": false,
-            "type": "object",
-            "in": "query"
-          },
-          {
-            "name": "attributes",
-            "description": "Attributes to include",
-            "required": false,
-            "type": "array",
-            "in": "query"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/plans/": {
-      "get": {
-        "tags": [
-          "Plans"
-        ],
-        "description": "Get all plans",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Plans"
-        ],
-        "description": "Create a new plan",
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/plans/{id}": {
-      "put": {
-        "tags": [
-          "Plans"
-        ],
-        "description": "Update a plan",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Plans"
-        ],
-        "description": "Delete a plan",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/schedules/": {
-      "get": {
-        "tags": [
-          "Schedules"
-        ],
-        "description": "Get all schedules",
-        "responses": {
-          "200": {
-            "description": "List of schedules",
-            "schema": {
-              "$ref": "#/definitions/SchedulesResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Schedules"
-        ],
-        "description": "Create a new schedule",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Schedule"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Schedule created successfully",
-            "schema": {
-              "$ref": "#/definitions/ScheduleResponse"
-            }
-          }
-        }
-      }
-    },
-    "/schedules/{id}": {
-      "put": {
-        "tags": [
-          "Schedules"
-        ],
-        "description": "Update a schedule",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Schedules"
-        ],
-        "description": "Delete a schedule",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
-      }
-    },
-    "/grants/": {
-      "get": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Get all grants",
-        "responses": {
-          "200": {
-            "description": "List of grants",
-            "schema": {
-              "$ref": "#/definitions/GrantsResponse"
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Create a new grant",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Grant"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Grant created successfully",
-            "schema": {
-              "$ref": "#/definitions/GrantResponse"
-            }
-          }
-        }
-      }
-    },
-    "/grants/{id}": {
-      "put": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Update a grant",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Grant"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Grant updated successfully",
-            "schema": {
-              "$ref": "#/definitions/GrantResponse"
-            }
-          }
-        }
-      },
-      "get": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Get grant by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Grant details",
-            "schema": {
-              "$ref": "#/definitions/GrantResponse"
-            }
-          }
-        }
-      }
-    },
-    "/grants/my": {
-      "get": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Get grants for current user",
-        "responses": {
-          "200": {
-            "description": "List of grants for current user",
-            "schema": {
-              "$ref": "#/definitions/GrantsResponse"
-            }
-          }
-        }
-      }
-    },
-    "/my/grants": {
-      "get": {
-        "tags": [
-          "Grants"
-        ],
-        "description": "Get grants for current user",
-        "responses": {
-          "200": {
-            "description": "List of grants for current user",
-            "schema": {
-              "$ref": "#/definitions/GrantsResponse"
-            }
-          }
-        }
-      }
-    }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
         },
-        "firstName": {
-          "type": "string",
-          "example": "John"
+        "/plans/{id}": {
+            "put": {
+                "tags": ["Plans"],
+                "description": "Update a plan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Plans"],
+                "description": "Delete a plan",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
         },
-        "lastName": {
-          "type": "string",
-          "example": "Doe"
+        "/schedules/": {
+            "get": {
+                "tags": ["Schedules"],
+                "description": "Get all schedules",
+                "responses": {
+                    "200": {
+                        "description": "List of schedules",
+                        "schema": {
+                            "$ref": "#/definitions/SchedulesResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Schedules"],
+                "description": "Create a new schedule",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Schedule"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Schedule created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/ScheduleResponse"
+                        }
+                    }
+                }
+            }
         },
-        "email": {
-          "type": "string",
-          "example": "john.doe@example.com"
+        "/schedules/{id}": {
+            "put": {
+                "tags": ["Schedules"],
+                "description": "Update a schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Schedules"],
+                "description": "Delete a schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
         },
-        "OrganisationId": {
-          "type": "number",
-          "example": 1
+        "/grants/": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get all grants",
+                "responses": {
+                    "200": {
+                        "description": "List of grants",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Grants"],
+                "description": "Create a new grant",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant created successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            }
         },
-        "roles": {
-          "type": "array",
-          "items": {
+        "/grants/{id}": {
+            "put": {
+                "tags": ["Grants"],
+                "description": "Update a grant",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Grant"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant updated successfully",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grant by ID",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grant details",
+                        "schema": {
+                            "$ref": "#/definitions/GrantResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/grants/my": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grants for current user",
+                "responses": {
+                    "200": {
+                        "description": "List of grants for current user",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/my/grants": {
+            "get": {
+                "tags": ["Grants"],
+                "description": "Get grants for current user",
+                "responses": {
+                    "200": {
+                        "description": "List of grants for current user",
+                        "schema": {
+                            "$ref": "#/definitions/GrantsResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
             "type": "object",
             "properties": {
-              "id": {
-                "type": "number",
-                "example": 1
-              },
-              "name": {
-                "type": "string",
-                "example": "Admin"
-              }
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "firstName": {
+                    "type": "string",
+                    "example": "John"
+                },
+                "lastName": {
+                    "type": "string",
+                    "example": "Doe"
+                },
+                "email": {
+                    "type": "string",
+                    "example": "john.doe@example.com"
+                },
+                "OrganisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "number",
+                                "example": 1
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Admin"
+                            }
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
             }
-          }
         },
-        "createdAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        }
-      }
-    },
-    "UsersResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "type": "object",
-          "properties": {
-            "data": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/User"
-              }
-            },
-            "total": {
-              "type": "number",
-              "example": 1
-            },
-            "page": {
-              "type": "number",
-              "example": 1
-            },
-            "limit": {
-              "type": "number",
-              "example": 10
+        "UsersResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "data": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            }
+                        },
+                        "total": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "page": {
+                            "type": "number",
+                            "example": 1
+                        },
+                        "limit": {
+                            "type": "number",
+                            "example": 10
+                        }
+                    }
+                }
             }
-          }
+        },
+        "UpdateUserResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/User"
+                }
+            }
+        },
+        "Schedule": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "title": {
+                    "type": "string",
+                    "example": "Vesting Schedule"
+                },
+                "description": {
+                    "type": "string",
+                    "example": "Standard 4-year vesting with 1-year cliff"
+                },
+                "cliff": {
+                    "type": "number",
+                    "example": 12
+                },
+                "periods": {
+                    "type": "number",
+                    "example": 4
+                },
+                "organisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
+            }
+        },
+        "SchedulesResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Schedule"
+                    }
+                }
+            }
+        },
+        "ScheduleResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/Schedule"
+                }
+            }
+        },
+        "Grant": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "example": 1
+                },
+                "UserId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "PlanId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "OrganisationId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "ScheduleId": {
+                    "type": "number",
+                    "example": 1
+                },
+                "grantDate": {
+                    "type": "string",
+                    "example": "2022-01-01"
+                },
+                "strikePrice": {
+                    "type": "number",
+                    "example": 10
+                },
+                "granted": {
+                    "type": "number",
+                    "example": 100
+                },
+                "status": {
+                    "type": "string",
+                    "example": "draft"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "example": "2025-08-11T00:00:00.000Z"
+                }
+            }
+        },
+        "GrantsResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Grant"
+                    }
+                }
+            }
+        },
+        "GrantResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "Success"
+                },
+                "data": {
+                    "$ref": "#/definitions/Grant"
+                }
+            }
         }
-      }
     },
-    "UpdateUserResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "$ref": "#/definitions/User"
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
         }
-      }
-    },
-    "Schedule": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
-        "title": {
-          "type": "string",
-          "example": "Vesting Schedule"
-        },
-        "description": {
-          "type": "string",
-          "example": "Standard 4-year vesting with 1-year cliff"
-        },
-        "cliff": {
-          "type": "number",
-          "example": 12
-        },
-        "periods": {
-          "type": "number",
-          "example": 4
-        },
-        "organisationId": {
-          "type": "number",
-          "example": 1
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        }
-      }
-    },
-    "SchedulesResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Schedule"
-          }
-        }
-      }
-    },
-    "ScheduleResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "$ref": "#/definitions/Schedule"
-        }
-      }
-    },
-    "Grant": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number",
-          "example": 1
-        },
-        "UserId": {
-          "type": "number",
-          "example": 1
-        },
-        "PlanId": {
-          "type": "number",
-          "example": 1
-        },
-        "OrganisationId": {
-          "type": "number",
-          "example": 1
-        },
-        "ScheduleId": {
-          "type": "number",
-          "example": 1
-        },
-        "grantDate": {
-          "type": "string",
-          "example": "2022-01-01"
-        },
-        "strikePrice": {
-          "type": "number",
-          "example": 10
-        },
-        "granted": {
-          "type": "number",
-          "example": 100
-        },
-        "status": {
-          "type": "string",
-          "example": "draft"
-        },
-        "createdAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        },
-        "updatedAt": {
-          "type": "string",
-          "example": "2025-08-11T00:00:00.000Z"
-        }
-      }
-    },
-    "GrantsResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Grant"
-          }
-        }
-      }
-    },
-    "GrantResponse": {
-      "type": "object",
-      "properties": {
-        "message": {
-          "type": "string",
-          "example": "Success"
-        },
-        "data": {
-          "$ref": "#/definitions/Grant"
-        }
-      }
     }
-  },
-  "components": {
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
-      }
-    }
-  }
 }

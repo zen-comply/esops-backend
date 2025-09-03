@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your New Option Grant from {{toolName}}</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; background-color: #f9f9f9; padding: 20px;">
+    <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.07);">
+        <h2 style="color: #333;">Congratulations, {{name}}!</h2>
+        <p>
+            We are pleased to inform you that you have been issued a new option grant under the {{toolName}} plan.
+        </p>
+        <p>
+            <strong>Grant Details:</strong>
+            <ul>
+                <li><strong>Grant Date:</strong> {{grantDate}}</li>
+                <li><strong>Number of Options:</strong> {{granted}}</li>
+                <li><strong>Strike Price:</strong>{{strikePrice}}</li>
+            </ul>
+        </p>
+        <p>
+            To review your grant and take any required actions, please log in to your {{toolName}} account.
+        </p>
+        <p style="text-align: center;">
+            <a href="{{toolUrl}}" style="display: inline-block; padding: 12px 24px; color: #fff; background-color: #007bff; border-radius: 5px; text-decoration: none;">View My Grant</a>
+        </p>
+        <p>
+            If you have any questions about your grant or need assistance, please contact our support team.
+        </p>
+        <p>Best regards,<br><strong>The {{toolName}} Team</strong></p>
+    </div>
+    <div style="text-align: center; margin-top: 20px;">
+        <p style="font-size: 12px; color: #777;">
+            For help, email us at <a href="mailto:support@equityiq.co" style="color: #007bff;">{{toolContactInfo}}</a>
+        </p>
+    </div>
+</body>
+</html>

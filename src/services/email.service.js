@@ -28,7 +28,7 @@ class EmailService extends SecureService {
         });
         this.data = {
             toolName: 'EquityIQ',
-            toolContactInfo: 'https://app.equityiq.co',
+            toolContactInfo: 'support@equityiq.co',
             toolUrl: process.env.APP_URL,
         };
 

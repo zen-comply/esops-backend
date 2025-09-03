@@ -75,7 +75,9 @@ class FsmService extends TenantService {
                         // Match fsmKey (case-insensitive) or resource '*'
                         if (
                             fsmPolicy.fsmKey?.toLowerCase() ===
-                            type.toLowerCase()
+                                type.toLowerCase() &&
+                            (fsmPolicy?.resource === '*' ||
+                                instance.UserId === this.req.user.id)
                         ) {
                             allowedActions.push(...fsmPolicy.actions);
                         }
