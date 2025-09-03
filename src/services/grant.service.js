@@ -31,7 +31,10 @@ class GrantService extends TenantService {
                 this.req.db.models.User,
                 this.req.db.models.Plan,
                 this.req.db.models.Schedule,
-                this.req.db.models.Vest,
+                {
+                    model: this.req.db.models.Vest,
+                    order: [['date', 'ASC']],
+                },
             ],
         });
     }
@@ -88,7 +91,10 @@ class GrantService extends TenantService {
                 this.req.db.models.User,
                 this.req.db.models.Plan,
                 this.req.db.models.Schedule,
-                this.req.db.models.Vest,
+                {
+                    model: this.req.db.models.Vest,
+                    order: [['date', 'ASC']],
+                },
             ],
             order: [['createdAt', 'ASC']],
         });
