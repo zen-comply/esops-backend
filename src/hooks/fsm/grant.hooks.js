@@ -30,4 +30,14 @@ export default {
             return grant;
         },
     },
+    REJECT: {
+        postTransition: async ({ id, req, data }) => {
+            req.options.comments = data.comments;
+            const grantService = new GrantService(req);
+
+            await grantService.rejectGrant(id);
+
+            return { message: 'Grant rejected' };
+        },
+    },
 };
