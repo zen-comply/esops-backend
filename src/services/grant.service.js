@@ -102,6 +102,25 @@ class GrantService extends TenantService {
             order: [['createdAt', 'ASC']],
         });
     }
+
+    async rejectGrant(id) {
+        const grant = await this.req.db.models.Grant.findByPk(id, this.options);
+        if (!grant) {
+            throw new Error('Grant not found');
+        }
+
+        // Cancel all the associated vests
+        await this.req.db.models.Vest.update(
+            { status: 'cancelled' },
+            {
+                where: { GrantId: id },
+                ...this.req.options,
+            }
+        );
+
+        await grant.refreshNumbers(this.options);
+        return grant;
+    }
 }
 
 export default GrantService;

@@ -4,6 +4,7 @@ import {
     createPlan,
     updatePlan,
     deletePlan,
+    getPlanWithSummary,
 } from '../controllers/plan.controller.js';
 
 const router = express.Router();
@@ -13,6 +14,12 @@ const router = express.Router();
  * @desc    Get all plans
  */
 router.get('/', getPlans);
+
+/**
+ * @route   GET /plans/:id/summary
+ * @desc    Get a plan with summary
+ */
+router.get('/:id/summary', getPlanWithSummary);
 
 /**
  * @route   POST /plans

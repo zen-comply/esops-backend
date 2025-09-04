@@ -60,3 +60,18 @@ export const deletePlan = async (req, res) => {
         res.sendError([err.message], 'Error', 400);
     }
 };
+
+export const getPlanWithSummary = async (req, res) => {
+    /**
+     * #swagger.tags = ['Plans']
+     * #swagger.description = 'Get a plan with summary'
+     */
+    try {
+        const planService = new PlanService(req);
+        const plan = await planService.getPlanWithSummary(req.params.id);
+        res.sendSuccess(plan);
+    } catch (err) {
+        logger.error(err);
+        res.sendError([err.message], 'Error', 400);
+    }
+};

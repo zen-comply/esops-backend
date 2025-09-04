@@ -34,6 +34,15 @@ describe('Plan API', () => {
         expect(res.body.data.name).to.equal('API Plan Updated');
     });
 
+    it('should get a plan with summary', async () => {
+        const res = await request(app)
+            .get(`/plans/${createdPlanId}/summary`)
+            .set('Authorization', `Bearer ${global.defaultOrg.adminToken}`);
+        expect(res.status).to.equal(200);
+        expect(res.body.data).to.have.property('id', createdPlanId);
+        expect(res.body.data).to.have.property('summary');
+    });
+
     it('SHould be able to approve a plan', async () => {
         const res = await request(app)
             .post(`/objects/plan/${createdPlanId}/transition`)
