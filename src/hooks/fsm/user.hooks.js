@@ -23,7 +23,7 @@ export default {
                     url: `${process.env.APP_URL}/reset-password?token=${token}`,
                 };
                 const status = await emailService.sendEmail(
-                    { email_template: templates.WelcomeEmail.TemplateName },
+                    { email_template: templates.EIQWelcomeEmail.TemplateName },
                     user.email,
                     emailData
                 );

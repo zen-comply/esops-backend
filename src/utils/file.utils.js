@@ -220,6 +220,12 @@ export const streamToBuffer = async (stream) => {
     return Buffer.concat(chunks);
 };
 
+export const getFileBufferFromS3 = async (bucket, key) => {
+    const command = new GetObjectCommand({ Bucket: bucket, Key: key });
+    const s3Object = await client.send(command);
+    return await streamToBuffer(s3Object.Body);
+};
+
 export function downloadFileFromS3(s3Key, s3Bucket) {
     const command = new GetObjectCommand({ Bucket: s3Bucket, Key: s3Key });
     return client.send(command);
