@@ -738,6 +738,25 @@
                 }
             }
         },
+        "/plans/{id}/summary": {
+            "get": {
+                "tags": ["Plans"],
+                "description": "Get a plan with summary",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
         "/plans/{id}": {
             "put": {
                 "tags": ["Plans"],
@@ -956,6 +975,16 @@
                         "schema": {
                             "$ref": "#/definitions/GrantsResponse"
                         }
+                    }
+                }
+            }
+        },
+        "/templates/create-default": {
+            "post": {
+                "description": "",
+                "responses": {
+                    "default": {
+                        "description": ""
                     }
                 }
             }

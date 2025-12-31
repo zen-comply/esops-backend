@@ -5,6 +5,27 @@ class GrantService extends TenantService {
         super(req);
     }
 
+    async _attachFileUrls(grants) {
+        if (!grants) return grants;
+        const items = Array.isArray(grants) ? grants : [grants];
+
+        for (const grant of items) {
+            const files = grant?.Files || grant?.File || [];
+            if (!Array.isArray(files)) continue;
+            await Promise.all(
+                files.map(async (file) => {
+                    if (file && typeof file.getUrl === 'function') {
+                        const url = await file.getUrl();
+                        file.url = url;
+                        file.setDataValue('url', url || null);
+                    }
+                })
+            );
+        }
+
+        return grants;
+    }
+
     async createGrant(data) {
         // Only pick fields relevant for Grant creation
         const grantData = {
@@ -24,7 +45,7 @@ class GrantService extends TenantService {
     }
 
     async getGrants() {
-        return await this.req.db.models.Grant.findAll({
+        const grants = await this.req.db.models.Grant.findAll({
             ...this.options,
             order: [['createdAt', 'ASC']],
             include: [
@@ -32,11 +53,16 @@ class GrantService extends TenantService {
                 this.req.db.models.Plan,
                 this.req.db.models.Schedule,
                 {
+                    model: this.req.db.models.File,
+                    required: false,
+                },
+                {
                     model: this.req.db.models.Vest,
                     order: [['date', 'ASC']],
                 },
             ],
         });
+        return await this._attachFileUrls(grants);
     }
 
     async getGrantById(id) {
@@ -49,13 +75,17 @@ class GrantService extends TenantService {
                 this.req.db.models.User,
                 this.req.db.models.Plan,
                 this.req.db.models.Schedule,
+                {
+                    model: this.req.db.models.File,
+                    required: false,
+                },
                 this.req.db.models.Vest,
             ],
         });
         if (!grant) {
             throw new Error('Grant not found');
         }
-        return grant;
+        return await this._attachFileUrls(grant);
     }
 
     async updateGrant(id, data) {
@@ -82,7 +112,7 @@ class GrantService extends TenantService {
     }
 
     async getMyGrants() {
-        return await this.req.db.models.Grant.findAll({
+        const grants = await this.req.db.models.Grant.findAll({
             ...this.options,
             where: {
                 UserId: this.req.user.id,
@@ -95,12 +125,17 @@ class GrantService extends TenantService {
                 this.req.db.models.Plan,
                 this.req.db.models.Schedule,
                 {
+                    model: this.req.db.models.File,
+                    required: false,
+                },
+                {
                     model: this.req.db.models.Vest,
                     order: [['date', 'ASC']],
                 },
             ],
             order: [['createdAt', 'ASC']],
         });
+        return await this._attachFileUrls(grants);
     }
 
     async rejectGrant(id) {

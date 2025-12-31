@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grant Letter</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+                color: #222;
+                margin: 24px;
+                line-height: 1.5;
+            }
+            h1 {
+                font-size: 20px;
+                margin: 0 0 16px 0;
+            }
+            .section {
+                margin: 16px 0;
+            }
+            .details {
+                border: 1px solid #e0e0e0;
+                padding: 12px;
+                border-radius: 6px;
+                background: #fafafa;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 8px;
+            }
+            th,
+            td {
+                border: 1px solid #e0e0e0;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background: #f2f2f2;
+            }
+            .muted {
+                color: #666;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Grant Letter</h1>
+
+        <div class="section">
+            <p>Dear {{receiverName}},</p>
+            <p>
+                This letter confirms your grant under the {{planName}} plan.
+                Below are the grant details and vesting schedule.
+            </p>
+        </div>
+
+        <div class="section details">
+            <p>
+                <strong>Grant Date:</strong> {{formatDate grantDate "MMM dd,
+                yyyy"}}
+            </p>
+            <p><strong>Granted Units:</strong> {{formatNumber granted}}</p>
+            <p><strong>Cliff (months):</strong> {{cliffMonths}}</p>
+            <p><strong>Plan Name:</strong> {{planName}}</p>
+        </div>
+
+        <div class="section">
+            <p><strong>Vesting Schedule</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Units</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each Vests}}
+                    <tr>
+                        <td>{{formatDate date "MMM dd, yyyy"}}</td>
+                        <td>{{formatNumber units}}</td>
+                        <td>{{status}}</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+            <p class="muted">
+                If you have questions, please contact your administrator.
+            </p>
+        </div>
+    </body>
+</html>
