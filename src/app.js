@@ -21,6 +21,7 @@ import grantRoutes from './routes/grant.route.js';
 import myRoutes from './routes/my.route.js';
 import { getMe } from './controllers/user.controller.js';
 import templateRoutes from './routes/templates.route.js';
+import webhookRoutes from './routes/webhook.route.js';
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/auth', authRoutes);
+app.use('/webhooks', webhookRoutes);
 
 app.use(verifyToken);
 

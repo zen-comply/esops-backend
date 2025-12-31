@@ -91,7 +91,36 @@ class FsmService extends TenantService {
             allowedActions.includes(action.eventType)
         );
 
-        return filteredActions;
+        let resultActions = filteredActions;
+
+        try {
+            const hooksPath = `../hooks/fsm/${type.toLowerCase()}.hooks.js`;
+            let hooks;
+            try {
+                hooks = (await import(hooksPath)).default;
+            } catch (err) {
+                logger.warn(
+                    `FsmService: No hooks found for ${modelName} at ${hooksPath}`,
+                    err
+                );
+                hooks = null;
+            }
+
+            if (hooks && typeof hooks.getActions === 'function') {
+                resultActions = await hooks.getActions({
+                    req: this.req,
+                    instance,
+                    actions: resultActions,
+                });
+            }
+        } catch (hookErr) {
+            logger.error(
+                `FsmService: Error executing getActions hook for ${modelName}: ${hookErr.message}`
+            );
+            throw hookErr;
+        }
+
+        return resultActions;
     }
 
     async transition(type, id, action, data = {}, file = null) {
