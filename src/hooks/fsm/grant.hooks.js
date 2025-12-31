@@ -2,6 +2,7 @@ import templates from '../../config/templates/emails/index.js';
 import logger from '../../logger.js';
 import EmailService from '../../services/email.service.js';
 import GrantService from '../../services/grant.service.js';
+import SigneasyService from '../../services/signeasy.service.js';
 import {
     createFileObject,
     deleteFileFromS3,
@@ -33,6 +34,13 @@ const getGrantLetterFiles = async (req, grantId) => {
             },
         },
     });
+};
+
+const getReceiverName = (grant) => {
+    const firstName = grant?.User?.firstName || '';
+    const lastName = grant?.User?.lastName || '';
+    const fullName = `${firstName} ${lastName}`.trim();
+    return fullName || grant?.User?.email || 'Recipient';
 };
 
 const generateGrantLetter = async ({ req, grant, removeExisting = false }) => {
@@ -95,7 +103,7 @@ const generateGrantLetter = async ({ req, grant, removeExisting = false }) => {
         throw new Error(errorMessage);
     }
 
-    return await req.db.models.File.create(
+    const grantLetterFile = await req.db.models.File.create(
         {
             name: fileName,
             s3Key: fileObject.s3Key,
@@ -107,9 +115,52 @@ const generateGrantLetter = async ({ req, grant, removeExisting = false }) => {
         },
         req.options
     );
+
+    const signeasyService = new SigneasyService(req);
+    const signEasy = await signeasyService.createSignatureRequest({
+        fileBuffer: pdfBuffer,
+        fileName,
+        signer: {
+            name: getReceiverName(grant),
+            email: grant.User.email,
+        },
+        anchorText: process.env.SIGNEASY_ANCHOR_TEXT || '[[SIGNATURE_1]]',
+        redirectUrl: process.env.SIGNEASY_REDIRECT_URL,
+        callbackUrl: process.env.SIGNEASY_CALLBACK_URL,
+    });
+
+    const existingSignEasy =
+        grant.signEasy && typeof grant.signEasy === 'object'
+            ? grant.signEasy
+            : {};
+    await grant.update(
+        {
+            signEasy: {
+                ...existingSignEasy,
+                ...signEasy,
+            },
+        },
+        req.options
+    );
+
+    return grantLetterFile;
 };
 
 export default {
+    getActions: async ({ instance, actions }) => {
+        const signingUrl = instance?.signEasy?.signingUrl || null;
+        if (!signingUrl) return actions;
+
+        return actions.map((action) => {
+            if (action.eventType === 'ACCEPT') {
+                return {
+                    ...action,
+                    url: signingUrl,
+                };
+            }
+            return action;
+        });
+    },
     APPROVE: {
         postTransition: async ({ id, req }) => {
             // get grant
@@ -125,8 +176,9 @@ export default {
             });
 
             let attachments = [];
+            let fileBuffer = null;
             if (grantLetterFile?.s3Bucket && grantLetterFile?.s3Key) {
-                const fileBuffer = await getFileBufferFromS3(
+                fileBuffer = await getFileBufferFromS3(
                     grantLetterFile.s3Bucket,
                     grantLetterFile.s3Key
                 );
